@@ -16,3 +16,5 @@ const Cart: NextPage = () => {
             </main>
         </>
     )}
+
+    export default Cart
