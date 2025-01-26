@@ -6,6 +6,7 @@ import React, { useState } from "react"
 import { Button, Card, CardBody, CardSubtitle } from "react-bootstrap";
 import { ProductType } from "../../service/products";
 import SuccessToast from "../successToast/SuccessToast";
+import { useCart } from "../../hooks/useCart";
 
 interface ProductCardProps {
   product: ProductType
@@ -14,7 +15,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [toastIsOpen, setToastIsOpen] = useState(false)
   const { id, name, imageUrl, price } = product
-
+  const {addProduct} = useCart()
   return (
     <>
       <Card>
@@ -38,6 +39,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             className="pb-2"
             full-Width
             onClick={() => {
+              addProduct(product)
               setToastIsOpen(true)
               setTimeout(() => setToastIsOpen(false), 1000 * 3)
             }}
